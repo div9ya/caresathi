@@ -1,0 +1,342 @@
+:root {
+    --main-bg-color: #141414;
+    --main-text-color: white;
+    --highlight-color: #A3F344;
+    --secondary-bg-color: #2e2e2e;
+    --chat-box-bg: #1e1e1e;
+    --border-radius: 1.625rem;
+    --padding: 1.25rem;
+    --gap: 1rem;
+    --font-family: 'Montserrat', serif;
+    --max-width: 80rem;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+body {
+    background-size: cover;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid white; */
+    position: relative;
+}
+
+.top {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    z-index: -100;
+    /* opacity: 80%; */
+}
+
+.bottom {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: -100;
+    /* opacity: 80%; */
+}
+
+ul {
+    margin: 100px 150px;
+    width: 55vw;
+}
+
+h1 {
+    display: flex;
+    align-self: center;
+    margin: 2rem;
+    font-size: 3rem;
+}
+
+button {
+    /* width: 100%; */
+    background-color: var(--highlight-color);
+    background-color: #a0f344;
+    color: #111;
+    border: none;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #88d32b;
+}
+
+/* --------------------------------- */
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: var(--max-width);
+    /* border: 1px solid green; */
+}
+
+.div {
+    max-width: var(--max-width);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: var(--border-radius);
+    background: transparent;
+    background-color: rgba(41, 41, 41, 0.670);
+    border: 1px solid rgba(90, 90, 90, 0.667);
+    backdrop-filter: blur(3x);
+    /* padding: 1rem; */
+    /* gap: var(--gap); */
+    /* margin: 1rem; */
+    /* margin-bottom: calc(4*var(--gap)); */
+
+    /* border: 1px solid white; */
+}
+
+.div h2 {
+    padding: 0.7rem;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 6rem;
+    /* border: 1px solid white; */
+}
+
+.div h2 img {
+    /* border: 1px solid wheat; */
+    width: 3rem;
+}
+
+.div input {
+    width: 60%;
+    padding: 0.3rem;
+    padding-left: 1rem;
+    margin: 1rem;
+    margin-top: 0;
+    border-radius: var(--border-radius);
+    background-color: rgba(41, 41, 41, 0.670);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.134);
+    font-size: 1rem;
+}
+
+.div .one {
+    width: 50%;
+}
+
+.div span {
+    width: 60%;
+    padding: 0.3rem 0.8rem;
+    padding-left: 1rem;
+    margin: 1rem;
+    margin-top: 0;
+    border-radius: var(--border-radius);
+    background-color: rgba(41, 41, 41, 0.670);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.134);
+    font-size: 1rem;
+}
+
+/* -------------------------------------- */
+
+
+.box {
+    width: var(--max-width);
+    /* height: 90vh; */
+    margin: 50px auto;
+    padding: 20px;
+    /* text-align: center; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    background-color: rgba(41, 41, 41, 0.470);
+    border: 1px solid rgba(90, 90, 90, 0.667);
+    backdrop-filter: blur(3x);
+    border-radius: var(--border-radius);
+
+    /* border: 1px solid yellow; */
+
+}
+
+table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: center;
+    gap: 1rem;
+    /* border-collapse: collapse; */
+    /* border: 1px solid yellow; */
+}
+
+th,
+td {
+    /* border: 1px solid black; */
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    /* background-color: #f70000; */
+}
+
+thead tr {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav {
+    width: calc(var(--max-width)-2rem);
+    /* position: relative; */
+    background-color: black;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(36, 36, 36, 0.667);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 0.31rem 5rem 0.31rem 3rem; */
+}
+
+.nav th {
+    /* border: 1px solid white; */
+    text-align: center;
+    /* margin: 0;
+    padding: 0; */
+}
+
+tbody {
+    width: 100%;
+    /* border: 1px solid red; */
+    /* padding: 0.61rem 0rem 0.61rem 1rem; */
+}
+
+tbody tr {
+    width: calc(var(--max-width)-2rem);
+    /* margin: 1rem; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 0.61rem; */
+    /* border: 1px solid yellow; */
+}
+
+tr td {
+
+    text-align: center;
+}
+
+/* table {
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 0.52px solid black;
+    padding: 10px;
+} */
+
+/* --------------------------------------- */
+
+
+
+#emergency-table th:nth-child(1),
+#emergency-table td:nth-child(1) {
+    width: 20%;
+    /* Phone number */
+}
+
+#emergency-table th:nth-child(2),
+#emergency-table td:nth-child(2) {
+    width: 25%;
+    /* Symptoms */
+}
+
+#emergency-table th:nth-child(3),
+#emergency-table td:nth-child(3) {
+    width: 15%;
+    /* View Map */
+    text-align: center;
+}
+
+#emergency-table th:nth-child(4),
+#emergency-table td:nth-child(4) {
+    width: 20%;
+    /* Status */
+}
+
+#emergency-table th:nth-child(5),
+#emergency-table td:nth-child(5) {
+    width: 20%;
+    /* Action */
+    text-align: center;
+}
+
+/* #emergency-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--secondary-bg-color);
+    color: var(--main-text-color);
+    font-family: var(--font-family);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    table-layout: fixed;
+} */
+
+
+@media (max-width: 768px) {
+    #emergency-table {
+        table-layout: auto;
+    }
+
+    #emergency-table thead {
+        display: none;
+    }
+
+    #emergency-table tbody tr {
+        display: block;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    #emergency-table tbody td {
+        display: block;
+        text-align: right;
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        position: relative;
+        white-space: normal;
+    }
+
+    #emergency-table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: var(--highlight-color);
+    }
+
+    button {
+        width: 100%;
+    }
+}

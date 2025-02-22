@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.min.js"></script>
+  
+    <!-- <link rel="stylesheet" href="/user_dashboard.css"> -->
+    <link rel="stylesheet" href="{{url_for('static',filename='SOS.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    
+</head>
+<body>
+    <div class="main">
+        <div class="nav">
+            <div class="logo">
+                <img src="{{ url_for('static', filename = 'logo.svg') }}" alt="Care Sathi">
+            </div>
+        </div>
+        <img class="blur left" src="{{url_for('static',filename='redEllipse 145.png')}}" alt="blur">
+        <img class="blur right" src="{{url_for('static',filename='redEllipse 144.png')}}" alt="blur">
+        <div class="sos-section">
+            <h1>SOS</h1>
+            <div class="sos-container">
+                <div class="sos-card">
+                    <h2>Get Ambulance</h2>
+                    <label for="phone">Phone Number <span>*</span></label>
+                    <input type="text" id="mobile_number" placeholder="Enter your phone number" required>
+                    <label for="symptoms">Symptoms</label>
+                    <input type="text" id="symptoms" placeholder="Describe symptoms">
+                    <br>
+                    <button id="send-emergency" class="sos-btn ambulance-btn" type="button" >Get Ambulance</button>
+                    <p id="status-message"></p>
+                </div>
+
+                <div class="sos-card">
+                    <h2>Get First Aid By AI</h2>
+                    <img src="{{ url_for('static', filename = 'first-Aid-Bot.svg') }}" alt="AI First-aid bot">
+                    <br>
+                    <button id="first_aid" class="sos-btn firstaid-btn" id="first_aid">Get First Aid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <script>
+        const socket = io();
+        
+        document.getElementById("first_aid").addEventListener("click", function() {
+      window.location.href = "/first-aid";  // Let Flask handle redirection
+       } );
+
+
+        document.getElementById('send-emergency').addEventListener('click', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const mobileNumber = document.getElementById('mobile_number').value;
+                    const symptoms=document.getElementById("symptoms").value;
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    // Emit emergency data
+                    socket.emit('send_emergency', {
+                        mobile_number: mobileNumber,
+                        symptoms:symptoms,
+                        latitude: latitude,
+                        longitude: longitude
+                    });
+
+                    alert('Emergency details sent successfully!');
+                }, (error) => {
+                    alert('Unable to fetch location: ' + error.message);
+                });
+            } else {
+                alert('Geolocation is not supported by your browser.');
+            }
+        });
+
+        // Handle real-time status updates
+        socket.on('emergency_sent', (data) => {
+            const statusMessage = document.getElementById('status-message');
+            statusMessage.textContent = `Your emergency has been sent by the hospital. Ask bot for first aid remedies`;
+        });
+    </script>
+
+    </div>
+    <!-- <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2025/01/13/05/20250113053309-MMGR4UFC.js"></script> -->
+
+
+</body>
+</html>
+
+
+
+

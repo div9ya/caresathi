@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="og:title" content="Disease Predictor">
+  <meta name="author" content="">
+  <meta name="og:image" content="static/logo1.png">
+  <meta name="Keywords" content="Flask, Machine Learning, Deep Learning, Artificial Intelligence, AI, ML,DL, Web Development">
+  <meta name="description" content="A Machine Learning and Deep Learning based webapp for Multiple Disease Prediction.">
+  <title>Disease Predictor</title>
+  <link rel="icon" href="{{ url_for('static', filename = 'logo1.png') }}" type="image/icon type">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  <style>
+
+    html, body{ height:100%; margin:0; }
+header{ height:50px;}
+
+body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: white;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .a_cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      width: 100%;
+    }
+    .a_card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .a_card:hover {
+      transform: translateY(-5px);
+    }
+    .a_card a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .a_card img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .a_card h3 {
+      margin: 10px 0;
+    }
+    .a_card p {
+      margin: 5px 0;
+    }
+    .a_card span {
+      display: block;
+      font-size: 12px;
+      margin-top: 10px;
+      color: #aaa;
+    }
+    .icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  </style>
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" style="background-color: black !important;">
+        <a href="{{ url_for('home') }}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarNav">
+           <ul class="navbar-nav ml-auto">
+             <li class="nav-item active">
+               <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+             </li>
+           </ul>
+         </div>
+       </nav>
+
+
+
+       <h1>AI Diseases Predict</h1>
+       <p>Predict the diseases:</p>
+       <div class="a_cards-container">
+         <!-- Diabetes -->
+         <div class="a_card">
+           <a href="{{ url_for('diabetesPage') }}">
+             <img src="{{ url_for('static', filename = 'diabetes_image.png') }}">
+             <h3>Diabetes</h3>
+             <p>Accuracy: 98.25%</p>
+             
+           </a>
+         </div>
+     
+         <!-- Breast Cancer -->
+         <div class="a_card">
+           <a href="{{ url_for('cancerPage') }}">
+             <img src="{{ url_for('static', filename = 'breast_cancer.jpg') }}">
+             <h3>Breast Cancer</h3>
+             <p>Accuracy: 98.25%</p>
+           </a>
+         </div>
+     
+         <!-- Heart Disease -->
+         <div class="a_card">
+           <a href="{{ url_for('heartPage') }}">
+             <img src="{{ url_for('static', filename = 'heartimage.jpg') }}">
+             <h3>Heart Disease</h3>
+             <p>Accuracy: 85.25%</p>
+           </a>
+         </div>
+     
+         <!-- Kidney Disease -->
+         <div class="a_card">
+           <a href="{{ url_for('kidneyPage') }}">
+             <img src="  {{ url_for('static', filename = 'analysis-of-chronic-kidney-disease-prediction-1024x683.webp') }}">
+             <h3>Kidney Disease</h3>
+             <p>Accuracy: 99%</p>
+             
+           </a>
+         </div>
+     
+         <!-- Liver Disease -->
+         <div class="a_card">
+           <a href="{{ url_for('liverPage') }}">
+             <img src="{{ url_for('static', filename = 'liver-disease-prediction-using-machine-learning.png') }}">
+             <h3>Liver Disease</h3>
+             <p>Accuracy: 78%</p>
+             
+           </a>
+         </div>
+       </div>
+
+       
+
+       
+
+	<br>
+<br>
+<br>
+<br>
+<main>
+	<div class="container-fluid" style="margin-bottom: 20px;">
+	{% block content %}
+
+	{% endblock %}
+    </div>
+  </main>
+  
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.min.js"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            /* border: 1px solid black; */
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hospital Dashboard</h1>
+    <div class="box">
+        <div class="div1">
+            <h2>Patients:</h2>
+            <input type="number" name="num" id="number">
+        </div>
+        <div class="div2">
+            <h2>Total Requests Received: <span id="request-count">0</span></h2>
+        </div>
+        <div class="div3">
+            <h2>Ambulance Available:</h2>
+            <input type="number" name="amb" id="amb">
+        </div>
+        
+    </div>
+
+    <table id="emergency-table">
+        <thead>
+            <tr>
+                <th>Phone number</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Symptoms</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emergency in emergencies %}
+            <tr id="emergency-{{ emergency.id }}">
+                <td>{{ emergency.mobile_number }}</td>
+                <td>{{ emergency.latitude }}</td>
+                <td>{{ emergency.longitude }}</td>
+                <td>{{ emergency.symptoms }}</td>
+                <td>{{ emergency.status }}</td>
+                <td><button onclick="markAsSent({{ emergency.id }})">Mark as Sent</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <script>
+        const socket = io();
+
+        // Handle real-time updates
+        socket.on('new_emergency', (data) => {
+            const emergencyTableBody = document.querySelector('#emergency-table tbody');
+            const row = document.createElement('tr');
+            row.id = emergency-${data.id};
+            row.innerHTML = `
+                <td>${data.mobile_number}</td>
+                <td>${data.latitude}</td>
+                <td>${data.longitude}</td>
+                <td>${data.symptoms}</td>
+                <td>${data.status}</td>
+                <td><button onclick="markAsSent(${data.id})">Mark as Sent</button></td>
+            `;
+            emergencyTableBody.appendChild(row);
+        });
+
+        // Function to mark an emergency as sent
+        function markAsSent(id) {
+            socket.emit('mark_as_sent', { id: id });
+            const emergencyRow = document.getElementById(emergency-${id});
+            if (emergencyRow) {
+                emergencyRow.cells[4].textContent = 'Sent';
+                emergencyRow.cells[5].innerHTML = '<button disabled>Sent</button>';
+            }
+        }
+        socket.on('update_request_count', (data) => {
+            document.getElementById('request-count').textContent = data.count;
+        });
+    </script>
+</body>
+</html>

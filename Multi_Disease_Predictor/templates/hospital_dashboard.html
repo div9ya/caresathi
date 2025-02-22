@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospital Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.min.js"></script>
+  <link rel="stylesheet" href="{{url_for('static',filename='hospital_dashboard.css')}}" />
+
+</head>
+
+<body>
+  <div class="top">
+    <img src="{{url_for('static',filename='2.png')}}" alt="" />
+  </div>
+  <div class="bottom">
+    <img src="{{url_for('static',filename='1.png')}}" alt="" />
+  </div>
+  <h1>Hospital Dashboard</h1>
+  <div class="container">
+    <div class="div div1">
+      <h2>Total Patients: <img src="{{url_for('static',filename='Icon.png')}}" alt=""></h2>
+      <input class="one" type="number" name="num" id="number" min="1" />
+    </div>
+    <div class="div div2">
+      <h2>Total Requests Received: <img src="{{url_for('static',filename='Icon.png')}}"></h2>
+      <span id="request-count">0</span>
+    </div>
+    <div class="div div3">
+      <h2>Ambulance Available: <img src="{{url_for('static',filename='Icon.png')}}" alt=""></h2>
+      <input type="number" name="amb" id="amb" min="1" />
+    </div>
+  </div>
+
+  <div class="box">
+    <table id="emergency-table">
+      <thead>
+        <tr class="nav">
+          <th>Phone number</th>
+          <th>Symptoms</th>
+          <th>View Map</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for emergency in emergencies %}
+        <tr id="emergency-{{ emergency.id }}">
+          <td>{{ emergency.mobile_number }}</td>
+          <td>{{ emergency.symptoms }}</td>
+          <td>
+            <button onclick="openMapPage('{{ emergency.latitude }}', '{{ emergency.longitude }}')">
+              View on Map
+            </button>
+          </td>
+          <td>{{ emergency.status }}</td>
+
+          <td>
+            <button onclick="markAsSent({{ emergency.id }})">
+              Accept
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <script>
+      const socket = io();
+
+      socket.on('new_emergency', (data) => {
+        const emergencyTableBody = document.querySelector('#emergency-table tbody');
+        const row = document.createElement('tr');
+        row.id = `emergency-${data.id}`;
+        row.innerHTML = `
+                <td>${data.mobile_number}</td>
+                <td>${data.symptoms}</td>
+                <td><button class="view-map-btn" data-lat="${data.latitude}" data-lng="${data.longitude}">View on Map</button></td>
+                <td>${data.status}</td>
+                <td><button class="mark-sent-btn" data-id="${data.id}">Accept</button></td>
+            `;
+        emergencyTableBody.appendChild(row);
+      });
+
+      window.openMapPage = function (lat, lng) {
+        if (!lat || !lng || lat === "None" || lng === "None") {
+          alert("Invalid location data!");
+          return;
+        }
+        window.open(`/map?lat=${lat}&lng=${lng}`, '_blank');
+      };
+
+      window.markAsSent = function (id) {
+        socket.emit('mark_as_sent', { id: id });
+        const emergencyRow = document.getElementById(`emergency-${id}`);
+        if (emergencyRow) {
+          emergencyRow.cells[3].textContent = 'Accepted';
+          emergencyRow.cells[4].innerHTML = '<button disabled>Accepted</button>';
+        }
+      };
+
+
+      document.addEventListener('click', function (event) {
+        if (event.target.matches('.view-map-btn')) {
+          const lat = event.target.dataset.lat;
+          const lng = event.target.dataset.lng;
+          openMapPage(lat, lng);
+        }
+        if (event.target.matches('.mark-sent-btn')) {
+          const id = event.target.dataset.id;
+          markAsSent(id);
+        }
+      });
+
+
+      socket.on('update_request_count', (data) => {
+        document.getElementById('request-count').textContent = data.count;
+      });
+    </script>
+
+  </div>
+</body>
+
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.min.js"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            /* border: 1px solid black; */
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hospital Dashboard</h1>
+    <div class="box">
+        <div class="div1">
+            <h2>Patients:</h2>
+            <input type="number" name="num" id="number">
+        </div>
+        <div class="div2">
+            <h2>Total Requests Received: <span id="request-count">0</span></h2>
+        </div>
+        <div class="div3">
+            <h2>Ambulance Available:</h2>
+            <input type="number" name="amb" id="amb">
+        </div>
+        
+    </div>
+
+    <table id="emergency-table">
+        <thead>
+            <tr>
+                <th>Phone number</th>
+               <th>Latitude</th>
+                <th>Longitude</th> -->
+<!-- <th>Symptoms</th>
+                <th>View Map</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emergency in emergencies %}
+            <tr id="emergency-{{ emergency.id }}">
+                <td>{{ emergency.mobile_number }}</td>
+                 <td>{{ emergency.latitude }}</td>
+                <td>{{ emergency.longitude }}</td> -->
+<!-- <td>{{ emergency.symptoms }}</td>
+                <td><button onclick="openMapPage('{{ emergency.latitude }}', '{{ emergency.longitude }}')">View on Map</button></td>
+                <td>{{ emergency.status }}</td>
+                
+                <td><button onclick="markAsSent({{ emergency.id }})">Mark as Sent</button></td>
+            </tr>
+            {% endfor %} -->
+<!-- </tbody> -->
+<!-- </table>
+    
+    <script>
+        const socket = io();
+
+        // Handle real-time updates
+        socket.on('new_emergency', (data) => {
+            const emergencyTableBody = document.querySelector('#emergency-table tbody');
+            const row = document.createElement('tr');
+            row.id = emergency-${data.id};
+            row.innerHTML = `
+                <td>${data.mobile_number}</td>
+                <td>${data.symptoms}</td>
+                <td><button onclick="openMapPage('${data.latitude}', '${data.longitude}')">View on Map</button></td>
+                <td>${data.status}</td>
+                <td><button onclick="markAsSent(${data.id})">Mark as Sent</button></td>
+            `;
+            emergencyTableBody.appendChild(row);
+        }); -->
+
+<!-- // Function to mark an emergency as sent
+        function markAsSent(id) {
+            socket.emit('mark_as_sent', { id: id });
+            const emergencyRow = document.getElementById(emergency-${id});
+            if (emergencyRow) {
+                emergencyRow.cells[4].textContent = 'Sent';
+                emergencyRow.cells[5].innerHTML = '<button disabled>Sent</button>';
+            }
+        }
+//         socket.on('update_request_count', (data) => {
+//             document.getElementById('request-count').textContent = data.count;
+//         });
+//     </script>
+// </body>
+// </html> -->
