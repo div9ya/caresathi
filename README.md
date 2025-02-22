@@ -160,7 +160,7 @@ nodemon server.js
 #### Access the Application
 The QR code service should be running at:
 ```bash
-http://localhost:3000
+http://localhost:3019
 ```
 Test the API using Postman or any browser.
 
