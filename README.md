@@ -1,6 +1,6 @@
 # CareSathi
 
-CareSathi is a healthcare web application designed to enhance accessibility for differently-abled individuals. This project was developed as part of the HackTU 6.0 hackathon and aims to provide a seamless experience for patients, caregivers, and medical professionals by integrating various technologies like AI, Blockchain, and NLP.
+CareSathi is a healthcare web application designed to enhance accessibility for differently-abled individuals.This project aims to provide a seamless experience for patients, caregivers, and medical professionals by integrating various technologies like AI, Blockchain, and NLP.
 
 ## Features
 - **AI-Powered Chatbot**: Provides real-time assistance to users by retrieving relevant medical information.
