@@ -87,4 +87,10 @@ form textarea{
 .upload input{
     background-color:rgb(44, 44, 44,33%);
 }
-
+h5 span a{
+    text-decoration: none;
+    color: #a4f344;
+}
+h5{
+    text-align: center;
+}

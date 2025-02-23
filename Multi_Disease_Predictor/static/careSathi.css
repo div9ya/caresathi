@@ -35,7 +35,7 @@ body {
 
 /* NAVBAR */
 .nav {
-    max-width: 81rem;
+    max-width: 95rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -81,17 +81,7 @@ body {
     font-weight: bold;
     color: black;
 }
-.btn a{
-    cursor: pointer;
-    border: none;
-    background-color: var(--highlight-color);
-    padding: 0.75rem 1.25rem;
-    margin: 0rem 0.41rem;
-    border-radius: var(--border-radius);
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-}
+
 .btn button:first-child {
     margin-right: 3rem;
 }
@@ -158,6 +148,72 @@ body {
         transform: rotate(360deg);
     }
 }
+
+/* ----------------PROFILE ICON------------------------- */
+
+
+.profile-container {
+    position: relative;
+}
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    /* background: #222; */
+    padding: 5px 7px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    color: white;
+    border: 1px solid #416f0853;
+
+}
+
+.profile-button img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    /* border: 1px solid #416f08; */
+
+}
+
+.profile-button span a {
+    text-decoration: none;
+    color: white;
+    ;
+}
+
+.dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: rgba(41, 41, 41, 0.670);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 150px;
+    display: none;
+
+    /* background-color: rgba(41, 41, 41, 0.102); */
+    border: 1px solid rgba(41, 41, 41, 0.152);
+}
+
+.dropdown.active {
+    display: block;
+}
+
+.dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    transition: background 0.3s;
+}
+
+/* .dropdown a:hover {
+    background: #A3F344;
+} */
 
 /* ----------------------------------------- */
 
@@ -369,147 +425,145 @@ ul {
 
 .container2 {
     max-width: var(--max-width);
+    width: 100%;
     padding: 2rem;
-    height: 100%;.container2 {
-        max-width: var(--max-width);
-        width: 100%;
-        padding: 2rem;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: var(--gap);
-        border-radius: var(--border-radius);
-        background: transparent;
-        backdrop-filter: blur(40px);
-        margin-bottom: calc(4*var(--gap));
-    
-        background-color: rgba(41, 41, 41, 0.602);
-        /* border: 1px solid red; */
-    }
-    
-    .row1 {
-        display: flex;
-        gap: var(--gap);
-        width: 100%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        /* border: 1px solid yellow; */
-    }
-    
-    .row1 a {
-        padding: calc(0.62*var(--padding)) 2rem;
-        border-radius: var(--border-radius);
-        background-color: transparent;
-        color: white;
-        border: none;
-        font-weight: 700;
-        text-decoration: none;
-        border: 1px solid white;
-    }
-    
-    .row1 a:hover {
-        color: black;
-        background-color: white;
-        border: 1px solid black;
-        transition: all 0.3s ease-in-out;
-    }
-    .row1 h1 {
-        font-size: 3rem;
-    }
-    
-    
-    
-    .row2 {
-        display: flex;
-        gap: var(--gap);
-        width: 100%;
-        padding: 1.25rem 0rem;
-        padding-left: 0;
-    
-        /* border: 1px solid red; */
-    }
-    
-    .col-left {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        gap: var(--gap);
-        background: transparent;
-        /* border: 1px solid red; */
-    }
-    
-    .sub-row {
-        display: flex;
-        flex-direction: column;
-        gap: var(--gap);
-        border-radius: 1.3rem;
-        border: none;
-        padding: var(--padding);
-    
-        /* border: 1px solid red; */
-    }
-    
-    .sub-row1 {
-        /* background-color: white; */
-        color: black;
-        border: none;
-    }
-    
-    .buttn {
-        display: flex;
-        gap: var(--gap);
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .sub-row button {
-        padding: calc(0.62*var(--padding)) 2rem;
-        border-radius: var(--border-radius);
-        background-color: transparent;
-        color: white;
-        border: none;
-        font-weight: 700;
-        border: 1px solid white;
-        width: auto;
-    }
-    
-    .sub-row button:hover {
-        color: black;
-        background-color: white;
-        border: 1px solid black;
-        transition: all 0.3s swiper-slide
-    }
-    
-    .col-left {
-        /* flex: 0.5; */
-    }
-    
-    .col-right {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* flex: 0.5; */
-    }
-    
-    .col-right img {
-        /* width: 100%; */
-        height: auto;
-    }
-    
-    .sub-row1 p {
-        font-size: 1.1rem;
-        color: rgb(213, 213, 213);
-    }
-    
-    .accuracy-section2 {
-        /* margin: 0 3rem; */
-        display: flex;
-        width: 50%;
-        /* flex: 0.3; */
-    }
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    border-radius: var(--border-radius);
+    background: transparent;
+    backdrop-filter: blur(40px);
+    margin-bottom: calc(4*var(--gap));
+
+    background-color: rgba(41, 41, 41, 0.602);
+    /* border: 1px solid red; */
 }
-/*------------------hero---------------------*/
+
+.row1 {
+    display: flex;
+    gap: var(--gap);
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid yellow; */
+}
+
+.row1 a {
+    padding: calc(0.62*var(--padding)) 2rem;
+    border-radius: var(--border-radius);
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid white;
+}
+
+.row1 a:hover {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    transition: all 0.3s ease-in-out;
+}
+
+.row1 h1 {
+    font-size: 3rem;
+}
+
+
+
+.row2 {
+    display: flex;
+    gap: var(--gap);
+    width: 100%;
+    padding: 1.25rem 0rem;
+    padding-left: 0;
+
+    /* border: 1px solid red; */
+}
+
+.col-left {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--gap);
+    background: transparent;
+    /* border: 1px solid red; */
+}
+
+.sub-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    border-radius: 1.3rem;
+    border: none;
+    padding: var(--padding);
+
+    /* border: 1px solid red; */
+}
+
+.sub-row1 {
+    /* background-color: white; */
+    color: black;
+    border: none;
+}
+
+.buttn {
+    display: flex;
+    gap: var(--gap);
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-row button {
+    padding: calc(0.62*var(--padding)) 2rem;
+    border-radius: var(--border-radius);
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-weight: 700;
+    border: 1px solid white;
+    width: auto;
+}
+
+.sub-row button:hover {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    transition: all 0.3s swiper-slide
+}
+
+.col-left {
+    /* flex: 0.5; */
+}
+
+.col-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex: 0.5; */
+}
+
+.col-right img {
+    /* width: 100%; */
+    height: auto;
+}
+
+.sub-row1 p {
+    font-size: 1.1rem;
+    color: rgb(213, 213, 213);
+}
+
+.accuracy-section2 {
+    /* margin: 0 3rem; */
+    display: flex;
+    width: 50%;
+    /* flex: 0.3; */
+}
+
+/------------------hero---------------------/
 
 .blur_hero img {
     position: absolute;
@@ -662,10 +716,10 @@ ul {
     height: 100%;
     padding-right: 0rem;
 
-    background: transparent;
+    /* background: transparent; */
     background-color: rgba(41, 41, 41, 0.102);
     border: 1px solid rgba(41, 41, 41, 0.152);
-    /* backdrop-filter: blur(40px); */
+    /* backdrop-filter: blur(4px); */
     margin-bottom: calc(4*var(--gap));
 }
 
@@ -699,7 +753,6 @@ ul {
 
 .buttons button {
     padding: calc(0.62*var(--padding)) 2rem;
-
     border-radius: var(--border-radius);
     background-color: transparent;
     color: black;
@@ -709,6 +762,11 @@ ul {
     border: 1px solid black;
 }
 
+.buttons button:hover {
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease-in-out;
+}
 
 /* swiper */
 .swiper {
@@ -837,12 +895,12 @@ ul {
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
     font-weight: 600;
-    border: 1 px solid black;
     border-radius: var(--border-radius);
     display: flex;
     align-items: center;
     gap: 5px;
     cursor: pointer;
+    border: 1px solid black;
 }
 
 .quote-icon {
@@ -1016,3 +1074,5 @@ hr {
     width: 100%;
     /* opacity: 0.6; */
 }
+
+/* ---------------------------------- */

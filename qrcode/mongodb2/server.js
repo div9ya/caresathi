@@ -52,7 +52,9 @@ app.get('/view', (req, res) => {
     res.sendFile(path.join(__dirname, './templates/view.html'));
 });
 
-             
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, './templates/login.html'));
+});
 app.post('/post', upload.array('prescriptions', 5), async (req, res) => {
     try {
         const { regd_no, name, email,  dob, gender, contact, address, emergency_contact, allergies, medications, chronic, symptoms } = req.body;
@@ -178,6 +180,30 @@ app.get('/qr/:regd_no', async (req, res) => {
     const downloadStream = bucketQR.openDownloadStreamByName(user.qr_code);
     res.set("Content-Type", "image/png");
     downloadStream.pipe(res);
+});
+
+// Add this route to serve the login page
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, './templates/login.html'));
+});
+
+// Handle login request
+app.post('/login', async (req, res) => {
+    const { regd_no, contact } = req.body;
+
+    // Find the user by registration number
+    const user = await Users.findOne({ regd_no });
+    if (!user) {
+        return res.status(404).send("Patient not found.");
+    }
+
+    // Check if the provided contact number matches the stored contact number
+    if (user.contact !== contact) {
+        return res.status(401).send("Invalid phone number.");
+    }
+
+    // Redirect to the patient details page
+    res.redirect(`/patient/${regd_no}`);
 });
 
 app.listen(port,()=>(
