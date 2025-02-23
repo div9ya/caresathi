@@ -53,7 +53,7 @@ app.get('/view', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, './templates/login.html'));
+    res.sendFile(path.join(__dirname, './templates/.html'));
 });
 app.post('/post', upload.array('prescriptions', 5), async (req, res) => {
     try {
