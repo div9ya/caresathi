@@ -9,10 +9,7 @@ CareSathi is a healthcare web application designed to enhance accessibility for 
 - **Accessible UI**: Designed for ease of use, particularly for visually impaired or physically disabled individuals.
 - **Prescription Management**: Generates and manages digital prescriptions using QR codes.
 - **Appointment Scheduling**: Streamlines the booking process for medical consultations.
-
-## 📊 Languages Used
-![Languages Used](https://github-readme-stats.vercel.app/api/top-langs/?username=div9ya&repo=caresathi&layout=compact&theme=radical)
-
+- 
 ## Technologies Used
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Flask (Python)
